@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAINA Beauty Salon — Ladies Only Professional Salon</title>
+  <meta name="description" content="Ladies-only beauty salon offering bridal makeup, facial, waxing, mehndi, mani pedi & party makeup. Book your appointment at NAINA Beauty Salon." />
+  <meta name="author" content="NAINA Beauty Salon" />
+  <meta property="og:title" content="NAINA Beauty Salon" />
+  <meta property="og:description" content="Ladies-only professional salon. Book your appointment today." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="NAINA Beauty Salon — Ladies Only Professional Salon" />
+  <meta name="twitter:description" content="NAINA Beauty Salon is a ladies-only professional salon offering bridal makeup, facial, waxing, mehndi, mani pedi and party makeup." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #c9748a;
+      --rose-dk: #a55570;
+      --rose-lt: #f5e8ec;
+      --gold:    #c8a96e;
+      --cream:   #fdf8f5;
+      --charcoal:#2e2626;
+      --muted:   #7a6b6b;
+      --white:   #ffffff;
+      --nav-h:   68px;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(253,248,245,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,116,138,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      z-index: 1000;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(201,116,138,0.12); }
+
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--rose-dk);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+
+    .nav-cta {
+      background: var(--rose);
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 0.78rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.08em !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dk) !important; color: var(--white) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--charcoal);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+
+    /* ── HERO ──────────────────────────────────── */
+    #top {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--nav-h) + 3rem) 5% 4rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(201,116,138,0.12) 0%, transparent 70%),
+        var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--rose);
+      opacity: .5;
+    }
+
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3.2rem, 9vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: 0.06em;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--rose);
+      color: var(--white);
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .2s, transform .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: var(--rose-dk); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--rose);
+      padding: 13px 30px;
+      border-radius: 50px;
+      border: 1px solid var(--rose);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .2s, color .2s, transform .15s;
+    }
+    .btn-ghost:hover { background: var(--rose-lt); transform: translateY(-1px); }
+
+    .hero-petal {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .petal-1 { width: 320px; height: 320px; background: var(--rose); top: -80px; right: -60px; }
+    .petal-2 { width: 200px; height: 200px; background: var(--gold); bottom: 60px; left: -60px; }
+
+    /* ── SECTION SHARED ────────────────────────── */
+    section { padding: 90px 5%; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.6rem;
+    }
+
+    /* ── ABOUT ─────────────────────────────────── */
+    #about {
+      background: var(--white);
+    }
+
+    .about-inner {
+      max-width: 680px;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2rem;
+    }
+    .tag {
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-dk);
+      background: var(--rose-lt);
+      padding: 6px 16px;
+      border-radius: 50px;
+    }
+
+    /* ── SERVICES ──────────────────────────────── */
+    #services { background: var(--cream); }
+
+    .services-header { margin-bottom: 3rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── BRIDAL PACKAGE ────────────────────────── */
+    #bridal {
+      background: linear-gradient(160deg, var(--rose-dk) 0%, var(--rose) 60%, #b86680 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    #bridal::before {
+      content: '';
+      position: absolute;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      top: -140px; right: -100px;
+    }
+    #bridal .section-label { color: var(--gold); }
+    #bridal .section-title { color: var(--white); }
+    #bridal .section-title em { color: #f6e3c2; }
+    #bridal .divider { background: var(--gold); }
+
+    .offer-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #3a2c12;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    .bridal-desc {
+      max-width: 600px;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .bridal-days {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .bridal-day-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 1.6rem 1.4rem;
+      backdrop-filter: blur(4px);
+    }
+    .bridal-day-num {
+      font-family: var(--ff-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .bridal-day-title {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .bridal-day-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+
+    .bridal-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    .bridal-price-old {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: line-through;
+    }
+    .bridal-price-new {
+      font-family: var(--ff-display);
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .bridal-price-save {
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-bridal {
+      background: var(--white);
+      color: var(--rose-dk);
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      display: inline-block;
+      transition: transform .15s, box-shadow .2s;
+      position: relative;
+    }
+    .btn-bridal:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(201,116,138,0.15);
+      border-radius: 16px;
+      padding: 2rem 1.8rem;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(201,116,138,0.12);
+      border-color: rgba(201,116,138,0.35);
+    }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── BOOKING ───────────────────────────────── */
+    #booking {
+      background: var(--white);
+    }
+
+    .booking-inner {
+      max-width: 560px;
+    }
+
+    .booking-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .booking-note::before {
+      content: '✦';
+      color: var(--rose);
+      font-size: 0.7rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 10px;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      background: var(--cream);
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(201,116,138,0.12);
+      background: var(--white);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--rose);
+      color: var(--white);
+      padding: 15px 34px;
+      border-radius: 50px;
+      border: none;
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--rose-dk); transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: var(--rose-lt);
+      border-radius: 16px;
+      margin-top: 1rem;
+    }
+    .form-success.show { display: block; }
+    .form-success p:first-child {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p:last-child {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ── TESTIMONIALS ──────────────────────────── */
+    #testimonials {
+      background: var(--rose-lt);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-text {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--charcoal);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── CONTACT ───────────────────────────────── */
+    #contact {
+      background: var(--charcoal);
+      text-align: center;
+    }
+
+    #contact .section-label { color: var(--rose); }
+    #contact .section-title { color: var(--white); }
+    #contact .divider { margin: 0 auto 1.6rem; }
+
+    .contact-desc {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.95rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--rose-lt);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,116,138,0.4);
+      padding-bottom: 4px;
+      transition: color .2s, border-color .2s;
+    }
+    .contact-phone:hover { color: var(--rose); border-color: var(--rose); }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.8rem;
+      background: #25D366;
+      color: var(--white);
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .whatsapp-btn:hover { background: #1ebe5b; transform: translateY(-1px); }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer {
+      background: #1e1818;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 1.6rem 5%;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── MOBILE ────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-bottom: 1px solid rgba(201,116,138,0.12); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 70px 5%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+
+    /* ── FADE-IN ON SCROLL ─────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#top" class="nav-logo">NAINA</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#bridal">Wedding</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#booking" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="top">
+    <div class="hero-petal petal-1"></div>
+    <div class="hero-petal petal-2"></div>
+    <p class="hero-eyebrow">✦ Ladies Only Salon ✦</p>
+    <h1 class="hero-title">
+      NAINA<br>
+      <em>Beauty Salon</em>
+    </h1>
+    <p class="hero-sub">Ladies Only Professional Salon</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">Book Appointment →</a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner reveal">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">Crafted with care,<br><em>just for you</em></h2>
+      <div class="divider"></div>
+      <p class="about-body">NAINA Beauty Salon is a ladies-only salon providing professional beauty services. We specialize in bridal makeup, facial treatments, waxing, mehndi, mani pedi, and party makeup. Customer satisfaction is our priority.</p>
+      <div class="about-tags">
+        <span class="tag">Ladies Only</span>
+        <span class="tag">Bridal Specialists</span>
+        <span class="tag">Professional Care</span>
+        <span class="tag">Trusted by Families</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header reveal">
+      <p class="section-label">Our Services</p>
+      <h2 class="section-title">A signature<br><em>experience</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">💍</span>
+        <p class="service-name">Bridal Makeup</p>
+        <p class="service-desc">Flawless looks for your special day. We make sure you shine unforgettably.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">✨</span>
+        <p class="service-name">Facial</p>
+        <p class="service-desc">Glow-boosting facials for radiant, healthy skin that speaks for itself.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🌸</span>
+        <p class="service-name">Waxing</p>
+        <p class="service-desc">Smooth, gentle waxing services performed with care and precision.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🌿</span>
+        <p class="service-name">Mehndi</p>
+        <p class="service-desc">Elegant traditional and modern mehndi designs for every occasion.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">💅</span>
+        <p class="service-name">Mani Pedi</p>
+        <p class="service-desc">Pampering hand and foot care that leaves you feeling refreshed.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">🎉</span>
+        <p class="service-name">Party Makeup</p>
+        <p class="service-desc">Stand out at every occasion with our stunning party looks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRIDAL PACKAGE -->
+  <section id="bridal">
+    <div class="reveal" style="position:relative;">
+      <span class="offer-badge">✦ Limited Time Wedding Offer ✦</span>
+      <p class="section-label">Bridal &amp; Wedding</p>
+      <h2 class="section-title">Your complete<br><em>wedding package</em></h2>
+      <div class="divider"></div>
+      <p class="bridal-desc">From Mehndi to Walima, we take care of every look across your wedding days. Book the full package in advance and your dates are reserved exclusively for you. Contact us for special wedding package pricing.</p>
+
+      <div class="bridal-days">
+        <div class="bridal-day-card">
+          <p class="bridal-day-num">Day 1</p>
+          <p class="bridal-day-title">Mehndi</p>
+          <p class="bridal-day-desc">Vibrant mehndi look with matching jewelry-ready makeup.</p>
+        </div>
+        <div class="bridal-day-card">
+          <p class="bridal-day-num">Day 2</p>
+          <p class="bridal-day-title">Baraat</p>
+          <p class="bridal-day-desc">Full bridal makeup, hairstyling &amp; draping for the big day.</p>
+        </div>
+        <div class="bridal-day-card">
+          <p class="bridal-day-num">Day 3</p>
+          <p class="bridal-day-title">Walima</p>
+          <p class="bridal-day-desc">Elegant glam look refreshed for your reception evening.</p>
+        </div>
+      </div>
+
+      <a href="#booking" class="btn-bridal">Reserve Your Wedding Dates →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="reveal">
+      <p class="section-label">Happy Clients</p>
+      <h2 class="section-title">What they're<br><em>saying</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"NAINA did my bridal makeup and I felt absolutely beautiful. Every relative asked who did it!"</p>
+        <p class="testimonial-author">— Ayesha R.</p>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"The mehndi design was exactly what I wanted — traditional but with a modern touch. Highly recommend."</p>
+        <p class="testimonial-author">— Fatima K.</p>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Very comfortable environment. As a ladies-only salon, I always feel at ease. My skin glows after every facial!"</p>
+        <p class="testimonial-author">— Sana M.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="booking-inner reveal">
+      <p class="section-label">Booking</p>
+      <h2 class="section-title">Book your<br><em>appointment</em></h2>
+      <div class="divider"></div>
+      <p class="booking-note">We'll confirm your appointment on WhatsApp or phone.</p>
+
+      <form id="bookingForm" name="bookings" netlify netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="bookings" />
+        <p style="display:none;"><input name="bot-field" /></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="03XX-XXXXXXX" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="service">Service</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="Wedding Package (3 Days)">💍 Wedding Package (3 Days) — Special Offer</option>
+              <option value="Bridal Makeup">Bridal Makeup</option>
+              <option value="Facial">Facial</option>
+              <option value="Waxing">Waxing</option>
+              <option value="Mehndi">Mehndi</option>
+              <option value="Mani Pedi">Mani Pedi</option>
+              <option value="Party Makeup">Party Makeup</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Appointment Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="timeFrom">Time From</label>
+            <select id="timeFrom" name="timeFrom" required>
+              <option value="" disabled selected>Select start time</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="timeTo">Time To</label>
+            <select id="timeTo" name="timeTo" required>
+              <option value="" disabled selected>Select end time</option>
+            </select>
+          </div>
+        </div>
+        <p id="slotWarning" style="display:none;color:#c0392b;font-size:0.85rem;margin:-0.6rem 0 1rem;background:#fdecea;padding:10px 14px;border-radius:8px;">⚠️ Please select any other time, it's already booked.</p>
+        <button type="submit" class="btn-submit">Confirm Booking</button>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <p>🌸</p>
+        <p><strong>Thank you! Your booking request has been received.</strong><br>We'll contact you on WhatsApp or phone to confirm your appointment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's talk</h2>
+    <div class="divider"></div>
+    <p class="contact-desc">Call us to book or ask anything about our services.</p>
+    <a href="tel:03341552318" class="contact-phone">📞 0334-1552318</a><br>
+    <a href="tel:03118863114" class="contact-phone" style="margin-top:12px;display:inline-flex;">📞 0311-8863114</a><br><br>
+    <a href="https://wa.me/923341552318" target="_blank" rel="noopener" class="whatsapp-btn" style="margin-right:10px;">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp (0334)
+    </a>
+    <a href="https://wa.me/923118863114" target="_blank" rel="noopener" class="whatsapp-btn">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp (0311)
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 NAINA Beauty Salon &nbsp;|&nbsp; All Rights Reserved
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Set min date to today
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    // Generate time slots — full 24 hours, every 30 minutes
+    function generateTimeSlots() {
+      const slots = [];
+      for (let h = 0; h <= 23; h++) {
+        for (let m = 0; m < 60; m += 30) {
+          const hour12 = h % 12 === 0 ? 12 : h % 12;
+          const ampm = h >= 12 ? 'PM' : 'AM';
+          const label = `${hour12}:${m === 0 ? '00' : m} ${ampm}`;
+          const value = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+          slots.push({ value, label });
+        }
+      }
+      slots.push({ value: '23:59', label: '11:59 PM' });
+      return slots;
+    }
+
+    const timeFromSelect = document.getElementById('timeFrom');
+    const timeToSelect   = document.getElementById('timeTo');
+    const slots = generateTimeSlots();
+
+    slots.forEach(s => {
+      const opt1 = document.createElement('option');
+      opt1.value = s.value; opt1.textContent = s.label;
+      timeFromSelect.appendChild(opt1);
+
+      const opt2 = document.createElement('option');
+      opt2.value = s.value; opt2.textContent = s.label;
+      timeToSelect.appendChild(opt2);
+    });
+
+    // Storage key per date, holds array of {from, to}
+    // NOTE: This uses the browser's localStorage, which only works on
+    // THIS device/browser. It prevents the SAME person double-booking
+    // a slot in one sitting, but cannot stop two different visitors on
+    // two different phones from picking the same time. For a real
+    // shared calendar across all visitors, a backend (e.g. Google
+    // Sheets + a form tool, or Calendly) is needed.
+    function getBookedSlots(date) {
+      try {
+        const raw = localStorage.getItem(`slots:${date}`);
+        return raw ? JSON.parse(raw) : [];
+      } catch (err) {
+        return [];
+      }
+    }
+
+    function saveBookedSlot(date, from, to) {
+      try {
+        const existing = getBookedSlots(date);
+        existing.push({ from, to });
+        localStorage.setItem(`slots:${date}`, JSON.stringify(existing));
+      } catch (err) {
+        console.error('Could not save slot', err);
+      }
+    }
+
+    function timesOverlap(aFrom, aTo, bFrom, bTo) {
+      return aFrom < bTo && bFrom < aTo;
+    }
+
+    const slotWarning = document.getElementById('slotWarning');
+
+    async function checkClash() {
+      const date = dateInput.value;
+      const from = timeFromSelect.value;
+      const to   = timeToSelect.value;
+      if (!date || !from || !to) { slotWarning.style.display = 'none'; return true; }
+
+      if (from >= to) {
+        slotWarning.textContent = '⚠️ End time must be after start time.';
+        slotWarning.style.display = 'block';
+        return false;
+      }
+
+      const booked = getBookedSlots(date);
+      const clash = booked.some(b => timesOverlap(from, to, b.from, b.to));
+      if (clash) {
+        slotWarning.textContent = "⚠️ Please select any other time, it's already booked.";
+        slotWarning.style.display = 'block';
+        return false;
+      }
+      slotWarning.style.display = 'none';
+      return true;
+    }
+
+    [dateInput, timeFromSelect, timeToSelect].forEach(el => {
+      el.addEventListener('change', checkClash);
+    });
+
+    // Booking form
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const name     = document.getElementById('name').value.trim();
+      const phone    = document.getElementById('phone').value.trim();
+      const service  = document.getElementById('service').value;
+      const date     = document.getElementById('date').value;
+      const timeFrom = timeFromSelect.value;
+      const timeTo   = timeToSelect.value;
+
+      if (!name || !phone || !service || !date || !timeFrom || !timeTo) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const ok = await checkClash();
+      if (!ok) return;
+
+      // Reserve the slot (this device/browser only)
+      saveBookedSlot(date, timeFrom, timeTo);
+
+      // Submit to Netlify Forms
+      const formData = new FormData(this);
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+      } catch (err) {
+        console.error('Netlify form submit failed', err);
+      }
+
+      // Show success message
+      this.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+
+      // Open WhatsApp with pre-filled message
+      const timeLabel = `${timeFrom} - ${timeTo}`;
+      const msg = `Hi NAINA Beauty Salon! I'd like to book an appointment.%0AName: ${encodeURIComponent(name)}%0AService: ${encodeURIComponent(service)}%0ADate: ${encodeURIComponent(date)}%0ATime: ${encodeURIComponent(timeLabel)}%0APhone: ${encodeURIComponent(phone)}`;
+      setTimeout(() => {
+        window.open(`https://wa.me/923341552318?text=${msg}`, '_blank');
+        setTimeout(() => {
+          window.open(`https://wa.me/923118863114?text=${msg}`, '_blank');
+        }, 1000);
+      }, 800);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
