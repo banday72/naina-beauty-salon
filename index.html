@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NAINA Beauty Salon — Ladies Only Professional Salon</title>
-  <meta name="description" content="Ladies-only beauty salon offering bridal makeup, facial, waxing, mehndi, mani pedi & party makeup. Book your appointment at NAINA Beauty Salon." />
+  <meta name="description" content="Ladies-only beauty salon in Bagh, Azad Kashmir offering bridal makeup, facial, waxing, mehndi, mani pedi & party makeup. Located near Al-Shifa Hospital, Muhallah Khawajgan. Book your appointment at NAINA Beauty Salon." />
   <meta name="author" content="NAINA Beauty Salon" />
   <meta property="og:title" content="NAINA Beauty Salon" />
   <meta property="og:description" content="Ladies-only professional salon. Book your appointment today." />
@@ -291,6 +291,67 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.5rem;
+    }
+
+    /* ── HOME SERVICES ─────────────────────────── */
+    #home-services {
+      background: var(--rose-lt);
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      align-items: stretch;
+    }
+
+    .home-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 8px 24px rgba(201,116,138,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .home-card-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--rose-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .home-card-title {
+      font-family: var(--ff-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .home-card-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    .home-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid rgba(201,116,138,0.25);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      margin-top: 2rem;
+      font-size: 0.88rem;
+      color: var(--rose-dk);
     }
 
     /* ── BRIDAL PACKAGE ────────────────────────── */
@@ -638,6 +699,75 @@
     }
     .whatsapp-btn:hover { background: #1ebe5b; transform: translateY(-1px); }
 
+    /* ── LOCATION ──────────────────────────────── */
+    .location-card {
+      max-width: 540px;
+      margin: 2.6rem auto 0;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 2rem 1.8rem;
+      text-align: left;
+    }
+
+    .location-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 1.2rem;
+    }
+    .location-row:last-child { margin-bottom: 0; }
+
+    .location-icon {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+    }
+
+    .location-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .location-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
+
+    .location-owner {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+
+    .btn-map {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.6rem;
+      background: transparent;
+      color: var(--rose-lt);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 11px 24px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+    .btn-map:hover { background: rgba(255,255,255,0.08); border-color: var(--rose); }
+
     /* ── FOOTER ────────────────────────────────── */
     footer {
       background: #1e1818;
@@ -681,6 +811,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#home-services">Home Service</a></li>
       <li><a href="#bridal">Wedding</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -761,6 +892,44 @@
         <p class="service-name">Party Makeup</p>
         <p class="service-desc">Stand out at every occasion with our stunning party looks.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- HOME SERVICES -->
+  <section id="home-services">
+    <div class="reveal">
+      <p class="section-label">At Your Doorstep</p>
+      <h2 class="section-title">Home<br><em>services</em></h2>
+      <div class="divider"></div>
+      <p style="max-width:560px;color:var(--muted);font-size:1rem;line-height:1.8;">Can't make it to the salon? Our team comes to you — perfect for brides, busy moms, and special occasions at home.</p>
+    </div>
+
+    <div class="home-grid">
+      <div class="home-card reveal">
+        <div class="home-card-icon">🏠</div>
+        <p class="home-card-title">Bridal at Home</p>
+        <p class="home-card-desc">Full bridal makeup and hairstyling delivered to your home on your big day — no travel stress.</p>
+      </div>
+      <div class="home-card reveal">
+        <div class="home-card-icon">💆‍♀️</div>
+        <p class="home-card-title">Facial &amp; Skincare</p>
+        <p class="home-card-desc">Relaxing facials in the comfort of your own room, with the same products we use in-salon.</p>
+      </div>
+      <div class="home-card reveal">
+        <div class="home-card-icon">🌿</div>
+        <p class="home-card-title">Mehndi at Home</p>
+        <p class="home-card-desc">Beautiful mehndi designs for you and your guests, done right at your event venue.</p>
+      </div>
+      <div class="home-card reveal">
+        <div class="home-card-icon">💅</div>
+        <p class="home-card-title">Mani Pedi at Home</p>
+        <p class="home-card-desc">Pampering nail care without leaving your house — perfect for a relaxing day in.</p>
+      </div>
+    </div>
+
+    <div class="home-note reveal">
+      <span>📍</span>
+      <span>Home service availability depends on your location. Mention "Home Service" when booking or message us on WhatsApp to confirm.</span>
     </div>
   </section>
 
@@ -857,8 +1026,17 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="date">Appointment Date</label>
+            <label for="date" id="dateLabel">Appointment Date</label>
             <input type="date" id="date" name="date" required />
+          </div>
+        </div>
+        <div class="form-row" id="weddingDateRow" style="display:none;">
+          <div class="form-group">
+            <label for="dateTo">Wedding End Date</label>
+            <input type="date" id="dateTo" name="dateTo" />
+          </div>
+          <div class="form-group">
+            <p style="font-size:0.78rem;color:var(--muted);line-height:1.5;margin-top:8px;">Select your Mehndi (start) date above and your Walima (end) date here. We'll reserve all 3 days for you.</p>
           </div>
         </div>
         <div class="form-row">
@@ -902,6 +1080,32 @@
       <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Chat on WhatsApp (0311)
     </a>
+
+    <div class="location-card reveal">
+      <div class="location-row">
+        <span class="location-icon">📍</span>
+        <div>
+          <p class="location-label">Our Location</p>
+          <p class="location-text">Muhallah Khawajgan, near Al-Shifa Hospital,<br>Banday House, Bagh, Azad Kashmir</p>
+        </div>
+      </div>
+      <div class="location-row">
+        <span class="location-icon">👤</span>
+        <div>
+          <p class="location-label">Ask For</p>
+          <p class="location-text location-owner">Shaheen Akhter <span style="color:rgba(255,255,255,0.5);font-family:var(--ff-body);font-size:0.82rem;">— Business Owner</span><br>📞 0333-1913030</p>
+        </div>
+      </div>
+      <div class="location-row" style="margin-bottom:0;">
+        <span class="location-icon">✦</span>
+        <div>
+          <p class="location-text" style="color:rgba(255,255,255,0.65);font-size:0.85rem;">There are several salons in the area — please ask specifically for <strong style="color:var(--rose-lt);">Shaheen Akhter's NAINA Beauty Salon</strong> to find us.</p>
+        </div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Al-Shifa+Hospital+Bagh+Azad+Kashmir" target="_blank" rel="noopener" class="btn-map">
+        🗺️ Get Directions on Google Maps
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -934,6 +1138,33 @@
     const dateInput = document.getElementById('date');
     const today = new Date().toISOString().split('T')[0];
     dateInput.setAttribute('min', today);
+
+    // Show/hide wedding end date field based on service selection
+    const serviceSelect    = document.getElementById('service');
+    const weddingDateRow   = document.getElementById('weddingDateRow');
+    const dateLabel        = document.getElementById('dateLabel');
+    const dateToInput      = document.getElementById('dateTo');
+
+    function toggleWeddingDates() {
+      const isWedding = serviceSelect.value === 'Wedding Package (3 Days)';
+      if (isWedding) {
+        weddingDateRow.style.display = 'grid';
+        dateLabel.textContent = 'Mehndi (Start) Date';
+        dateToInput.setAttribute('required', 'required');
+      } else {
+        weddingDateRow.style.display = 'none';
+        dateLabel.textContent = 'Appointment Date';
+        dateToInput.removeAttribute('required');
+        dateToInput.value = '';
+      }
+    }
+
+    serviceSelect.addEventListener('change', toggleWeddingDates);
+
+    // Keep end date in sync with the start date
+    dateInput.addEventListener('change', () => {
+      dateToInput.setAttribute('min', dateInput.value);
+    });
 
     // Generate time slots — full 24 hours, every 30 minutes
     function generateTimeSlots() {
@@ -1031,11 +1262,21 @@
       const phone    = document.getElementById('phone').value.trim();
       const service  = document.getElementById('service').value;
       const date     = document.getElementById('date').value;
+      const dateTo   = dateToInput.value;
       const timeFrom = timeFromSelect.value;
       const timeTo   = timeToSelect.value;
+      const isWedding = service === 'Wedding Package (3 Days)';
 
       if (!name || !phone || !service || !date || !timeFrom || !timeTo) {
         alert('Please fill in all fields.');
+        return;
+      }
+      if (isWedding && !dateTo) {
+        alert('Please select your Walima (end) date for the wedding package.');
+        return;
+      }
+      if (isWedding && dateTo < date) {
+        alert('End date must be after the start date.');
         return;
       }
 
@@ -1063,7 +1304,8 @@
 
       // Open WhatsApp with pre-filled message
       const timeLabel = `${timeFrom} - ${timeTo}`;
-      const msg = `Hi NAINA Beauty Salon! I'd like to book an appointment.%0AName: ${encodeURIComponent(name)}%0AService: ${encodeURIComponent(service)}%0ADate: ${encodeURIComponent(date)}%0ATime: ${encodeURIComponent(timeLabel)}%0APhone: ${encodeURIComponent(phone)}`;
+      const dateLine  = isWedding ? `${date} to ${dateTo}` : date;
+      const msg = `Hi NAINA Beauty Salon! I'd like to book an appointment.%0AName: ${encodeURIComponent(name)}%0AService: ${encodeURIComponent(service)}%0ADate: ${encodeURIComponent(dateLine)}%0ATime: ${encodeURIComponent(timeLabel)}%0APhone: ${encodeURIComponent(phone)}`;
       setTimeout(() => {
         window.open(`https://wa.me/923341552318?text=${msg}`, '_blank');
         setTimeout(() => {
