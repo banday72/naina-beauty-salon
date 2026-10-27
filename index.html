@@ -19,6 +19,8 @@
   <meta name="twitter:image" content="https://nainabeautysalon.netlify.app/og-image.jpg" />
   <meta name="geo.region" content="PK" />
   <meta name="geo.placename" content="Bagh, Azad Kashmir" />
+  <meta name="theme-color" content="#fdf8f5" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23c9748a'/%3E%3Ctext x='50' y='68' font-size='52' text-anchor='middle' fill='%23fff' font-family='Georgia,serif' font-style='italic' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -150,6 +152,9 @@
       border-radius: 2px;
       transition: transform .3s, opacity .3s;
     }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── HERO ──────────────────────────────────── */
     #top {
@@ -852,6 +857,161 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── FAQ ───────────────────────────────────── */
+    #faq { background: var(--white); }
+
+    .faq-list {
+      max-width: 680px;
+      margin-top: 2.5rem;
+    }
+
+    .faq-item {
+      border: 1px solid rgba(201,116,138,0.18);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      background: var(--cream);
+      overflow: hidden;
+    }
+    .faq-item[open] {
+      background: var(--white);
+      border-color: rgba(201,116,138,0.35);
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.1rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      color: var(--rose);
+      line-height: 1;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      padding: 0 1.4rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FLOATING WHATSAPP ─────────────────────── */
+    .float-wa {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+      z-index: 900;
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none;
+    }
+    .float-wa:hover { transform: scale(1.08); box-shadow: 0 8px 26px rgba(37,211,102,0.5); }
+    .float-wa svg { width: 28px; height: 28px; }
+
+    /* ── MOBILE CTA BAR ────────────────────────── */
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid rgba(201,116,138,0.18);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      gap: 10px;
+      z-index: 950;
+    }
+    .mobile-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 11px 6px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .cta-call   { background: var(--rose-lt); color: var(--rose-dk); }
+    .cta-wa    { background: #e8f9ee; color: #1e8a4c; }
+    .cta-book  { background: var(--rose); color: var(--white); }
+    .cta-book:hover { background: var(--rose-dk); }
+
+    /* ── BOOKING HELPERS ───────────────────────── */
+    .booking-hint {
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .field-error {
+      display: none;
+      font-size: 0.78rem;
+      color: #c0392b;
+      margin-top: 5px;
+    }
+    .field-error.show { display: block; }
+
+    .form-error {
+      display: none;
+      color: #c0392b;
+      font-size: 0.85rem;
+      margin: -0.6rem 0 1rem;
+      background: #fdecea;
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+    .form-error.show { display: block; }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── HERO ANIMATIONS ───────────────────────── */
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp .8s ease forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up.d1 { animation-delay: .1s; }
+    .fade-up.d2 { animation-delay: .25s; }
+    .fade-up.d3 { animation-delay: .4s; }
+    .fade-up.d4 { animation-delay: .55s; }
+    .fade-up.d5 { animation-delay: .7s; }
+
     /* ── MOBILE ────────────────────────────────── */
     @media (max-width: 640px) {
       .nav-links { display: none; flex-direction: column; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--white); padding: 1.5rem 5%; gap: 1.2rem; border-bottom: 1px solid rgba(201,116,138,0.12); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
@@ -859,10 +1019,14 @@
       .hamburger { display: flex; }
       .form-row { grid-template-columns: 1fr; }
       section { padding: 70px 5%; }
+      .mobile-cta { display: flex; }
+      .float-wa { bottom: calc(76px + env(safe-area-inset-bottom)); right: 16px; }
+      body { padding-bottom: 72px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition: none !important; animation: none !important; }
+      .fade-up { opacity: 1; }
     }
 
     /* ── FADE-IN ON SCROLL ─────────────────────── */
@@ -888,6 +1052,7 @@
       <li><a href="#home-services">Home Service</a></li>
       <li><a href="#bridal">Wedding</a></li>
       <li><a href="#booking">Booking</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#booking" class="nav-cta">Book Now</a></li>
     </ul>
@@ -900,17 +1065,17 @@
   <section id="top">
     <div class="hero-petal petal-1"></div>
     <div class="hero-petal petal-2"></div>
-    <p class="hero-eyebrow">✦ Ladies Only Salon ✦</p>
-    <h1 class="hero-title">
+    <p class="hero-eyebrow fade-up d1">✦ Ladies Only Salon ✦</p>
+    <h1 class="hero-title fade-up d2">
       NAINA<br>
       <em>Beauty Salon</em>
     </h1>
-    <p class="hero-sub">Ladies Only Professional Salon</p>
-    <div class="hero-btns">
+    <p class="hero-sub fade-up d3">Ladies Only Professional Salon · Open Daily 9 AM – 8 PM</p>
+    <div class="hero-btns fade-up d4">
       <a href="#booking" class="btn-primary">Book Appointment →</a>
       <a href="#services" class="btn-ghost">Our Services</a>
     </div>
-    <a href="https://wa.me/923341552318?text=Hi%20NAINA%20Beauty%20Salon!%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" class="hero-whatsapp">
+    <a href="https://wa.me/923341552318?text=Hi%20NAINA%20Beauty%20Salon!%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" class="hero-whatsapp fade-up d5">
       <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Or message us on WhatsApp
     </a>
@@ -1089,6 +1254,7 @@
       <h2 class="section-title">Book your<br><em>appointment</em></h2>
       <div class="divider"></div>
       <p class="booking-note">We'll confirm your appointment on WhatsApp or phone.</p>
+      <p class="booking-hint">✦ Open daily, 9:00 AM – 8:00 PM — real-time availability, no double booking.</p>
 
       <form id="bookingForm" name="bookings" netlify netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="bookings" />
@@ -1097,10 +1263,12 @@
           <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" placeholder="Your name" required />
+            <p class="field-error" id="nameError">Please enter your name.</p>
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" placeholder="03XX-XXXXXXX" required />
+            <p class="field-error" id="phoneError">Enter a valid Pakistani mobile number, e.g. 03341552318.</p>
           </div>
         </div>
         <div class="form-row">
@@ -1116,16 +1284,19 @@
               <option value="Mani Pedi">Mani Pedi</option>
               <option value="Party Makeup">Party Makeup</option>
             </select>
+            <p class="field-error" id="serviceError">Please select a service.</p>
           </div>
           <div class="form-group">
             <label for="date" id="dateLabel">Appointment Date</label>
             <input type="date" id="date" name="date" required />
+            <p class="field-error" id="dateError">Please choose a date.</p>
           </div>
         </div>
         <div class="form-row" id="weddingDateRow" style="display:none;">
           <div class="form-group">
             <label for="dateTo">Wedding End Date</label>
             <input type="date" id="dateTo" name="dateTo" />
+            <p class="field-error" id="dateToError">End date must be on or after the start date.</p>
           </div>
           <div class="form-group">
             <p style="font-size:0.78rem;color:var(--muted);line-height:1.5;margin-top:8px;">Select your Mehndi (start) date above and your Walima (end) date here. We'll reserve all 3 days for you.</p>
@@ -1137,22 +1308,56 @@
             <select id="timeFrom" name="timeFrom" required>
               <option value="" disabled selected>Select start time</option>
             </select>
+            <p class="field-error" id="timeFromError">Please select a start time.</p>
           </div>
           <div class="form-group">
             <label for="timeTo">Time To</label>
             <select id="timeTo" name="timeTo" required>
               <option value="" disabled selected>Select end time</option>
             </select>
+            <p class="field-error" id="timeToError">End time must be after start time.</p>
           </div>
         </div>
-        <p id="slotWarning" style="display:none;color:#c0392b;font-size:0.85rem;margin:-0.6rem 0 1rem;background:#fdecea;padding:10px 14px;border-radius:8px;">⚠️ Please select any other time, it's already booked.</p>
-        <button type="submit" class="btn-submit">Confirm Booking</button>
+        <p id="slotWarning" class="form-error" role="alert" aria-live="polite">⚠️ Please select any other time, it's already booked.</p>
+        <p id="apiError" class="form-error" role="alert" aria-live="polite"></p>
+        <button type="submit" class="btn-submit" id="submitBtn">Confirm Booking</button>
       </form>
 
       <div class="form-success" id="formSuccess">
         <p>🌸</p>
         <p><strong>Thank you! Your booking request has been received.</strong><br>We'll contact you on WhatsApp or phone to confirm your appointment.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="reveal">
+      <p class="section-label">Good to Know</p>
+      <h2 class="section-title">Frequently asked<br><em>questions</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary>Do I need to book in advance?</summary>
+        <p class="faq-answer">Walk-ins are welcome, but we recommend booking at least a day in advance — especially for bridal and party makeup, which need extra time and preparation.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Is the salon ladies-only?</summary>
+        <p class="faq-answer">Yes. NAINA Beauty Salon is a fully ladies-only salon. The entire space is staffed by and reserved for female clients, so you can relax in complete comfort.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Do you offer services at home?</summary>
+        <p class="faq-answer">Yes! We offer bridal, facial, mehndi and mani pedi services at your home. Availability depends on your location — mention "Home Service" when booking or message us on WhatsApp to confirm.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>How does the wedding package work?</summary>
+        <p class="faq-answer">Our 3-day package covers your Mehndi, Baraat and Walima looks. Pick your Mehndi (start) date and Walima (end) date in the booking form and we'll reserve all your wedding days exclusively for you.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>What are your timings?</summary>
+        <p class="faq-answer">We're open every day from 9:00 AM to 8:00 PM. For very early bridal appointments, please call us and we'll arrange a special time.</p>
+      </details>
     </div>
   </section>
 
@@ -1202,8 +1407,30 @@
 
   <!-- FOOTER -->
   <footer>
+    <div style="max-width:560px;margin:0 auto 1rem;">
+      <p style="font-family:var(--ff-display);font-size:1.2rem;color:rgba(255,255,255,0.65);letter-spacing:0.08em;margin-bottom:0.4rem;">NAINA <em style="color:var(--rose);">Beauty Salon</em></p>
+      <p style="margin-bottom:0.8rem;">Ladies Only · Bagh, Azad Kashmir · Open Daily 9 AM – 8 PM</p>
+      <p>
+        <a href="#about" style="color:rgba(255,255,255,0.45);text-decoration:none;">About</a> ·
+        <a href="#services" style="color:rgba(255,255,255,0.45);text-decoration:none;">Services</a> ·
+        <a href="#booking" style="color:rgba(255,255,255,0.45);text-decoration:none;">Book</a> ·
+        <a href="#faq" style="color:rgba(255,255,255,0.45);text-decoration:none;">FAQ</a>
+      </p>
+    </div>
     © 2026 NAINA Beauty Salon &nbsp;|&nbsp; All Rights Reserved
   </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/923341552318?text=Hi%20NAINA%20Beauty%20Salon!" target="_blank" rel="noopener" class="float-wa" aria-label="Chat on WhatsApp">
+    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- MOBILE CTA BAR -->
+  <div class="mobile-cta" aria-label="Quick actions">
+    <a href="tel:03341552318" class="cta-call">📞 Call</a>
+    <a href="https://wa.me/923341552318" target="_blank" rel="noopener" class="cta-wa">💬 WhatsApp</a>
+    <a href="#booking" class="cta-book">Book Now</a>
+  </div>
 
   <script>
     // Nav scroll effect
@@ -1267,11 +1494,15 @@
       dateToInput.setAttribute('min', dateInput.value);
     });
 
-    // Generate time slots — full 24 hours, every 30 minutes
+    // Generate time slots — opening hours only (9:00 AM – 8:00 PM)
+    const OPEN_HOUR = 9;
+    const CLOSE_HOUR = 20;
+
     function generateTimeSlots() {
       const slots = [];
-      for (let h = 0; h <= 23; h++) {
+      for (let h = OPEN_HOUR; h <= CLOSE_HOUR; h++) {
         for (let m = 0; m < 60; m += 30) {
+          if (h === CLOSE_HOUR) break; // last slot can't START at closing time
           const hour12 = h % 12 === 0 ? 12 : h % 12;
           const ampm = h >= 12 ? 'PM' : 'AM';
           const label = `${hour12}:${m === 0 ? '00' : m} ${ampm}`;
@@ -1279,7 +1510,8 @@
           slots.push({ value, label });
         }
       }
-      slots.push({ value: '23:59', label: '11:59 PM' });
+      // closing time is valid as an END time
+      slots.push({ value: `${String(CLOSE_HOUR).padStart(2,'0')}:00`, label: '8:00 PM' });
       return slots;
     }
 
@@ -1297,29 +1529,20 @@
       timeToSelect.appendChild(opt2);
     });
 
-    // Storage key per date, holds array of {from, to}
-    // NOTE: This uses the browser's localStorage, which only works on
-    // THIS device/browser. It prevents the SAME person double-booking
-    // a slot in one sitting, but cannot stop two different visitors on
-    // two different phones from picking the same time. For a real
-    // shared calendar across all visitors, a backend (e.g. Google
-    // Sheets + a form tool, or Calendly) is needed.
-    function getBookedSlots(date) {
-      try {
-        const raw = localStorage.getItem(`slots:${date}`);
-        return raw ? JSON.parse(raw) : [];
-      } catch (err) {
-        return [];
-      }
-    }
+    // ── Real-time availability (server-side, shared across all visitors) ──
+    // Booked slots live in the salon's database. When a date is picked,
+    // we fetch that day's bookings so every visitor sees up-to-date availability.
+    let bookedSlots = [];
 
-    function saveBookedSlot(date, from, to) {
+    async function fetchBooked(date) {
       try {
-        const existing = getBookedSlots(date);
-        existing.push({ from, to });
-        localStorage.setItem(`slots:${date}`, JSON.stringify(existing));
+        const res = await fetch(`/api/bookings?date=${encodeURIComponent(date)}`);
+        if (!res.ok) return [];
+        const data = await res.json();
+        return data.booked || [];
       } catch (err) {
-        console.error('Could not save slot', err);
+        console.error('Could not load availability', err);
+        return [];
       }
     }
 
@@ -1328,24 +1551,42 @@
     }
 
     const slotWarning = document.getElementById('slotWarning');
+    const apiError    = document.getElementById('apiError');
+    const submitBtn   = document.getElementById('submitBtn');
+
+    function hideErrors() {
+      slotWarning.style.display = 'none';
+      apiError.style.display = 'none';
+    }
+
+    function showSlotWarning(msg) {
+      slotWarning.textContent = msg;
+      slotWarning.style.display = 'block';
+    }
 
     async function checkClash() {
       const date = dateInput.value;
       const from = timeFromSelect.value;
       const to   = timeToSelect.value;
-      if (!date || !from || !to) { slotWarning.style.display = 'none'; return true; }
+
+      if (!date || !from || !to) {
+        slotWarning.style.display = 'none';
+        return true;
+      }
 
       if (from >= to) {
-        slotWarning.textContent = '⚠️ End time must be after start time.';
-        slotWarning.style.display = 'block';
+        showSlotWarning('⚠️ End time must be after start time.');
         return false;
       }
 
-      const booked = getBookedSlots(date);
-      const clash = booked.some(b => timesOverlap(from, to, b.from, b.to));
+      if (date !== dateInput.dataset.bookedDate) {
+        bookedSlots = await fetchBooked(date);
+        dateInput.dataset.bookedDate = date;
+      }
+
+      const clash = bookedSlots.some(b => timesOverlap(from, to, b.timeFrom, b.timeTo));
       if (clash) {
-        slotWarning.textContent = "⚠️ Please select any other time, it's already booked.";
-        slotWarning.style.display = 'block';
+        showSlotWarning("⚠️ That time is already booked. Please select any other time.");
         return false;
       }
       slotWarning.style.display = 'none';
@@ -1356,38 +1597,95 @@
       el.addEventListener('change', checkClash);
     });
 
+    // ── Inline validation ──
+    function setError(id, show) {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('show', show);
+    }
+
+    function isValidPhone(phone) {
+      return /^03\d{9}$/.test(phone.replace(/[\s-]/g, ''));
+    }
+
+    function validateForm() {
+      let valid = true;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      setError('nameError', !name);            if (!name) valid = false;
+      setError('phoneError', !isValidPhone(phone)); if (!isValidPhone(phone)) valid = false;
+      setError('serviceError', !serviceSelect.value); if (!serviceSelect.value) valid = false;
+      setError('dateError', !dateInput.value);       if (!dateInput.value) valid = false;
+      setError('timeFromError', !timeFromSelect.value); if (!timeFromSelect.value) valid = false;
+      setError('timeToError', !timeToSelect.value);     if (!timeToSelect.value) valid = false;
+
+      const isWedding = serviceSelect.value === 'Wedding Package (3 Days)';
+      if (isWedding && (!dateToInput.value || dateToInput.value < dateInput.value)) {
+        setError('dateToError', true);
+        valid = false;
+      } else {
+        setError('dateToError', false);
+      }
+      return valid;
+    }
+
     // Booking form
     document.getElementById('bookingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
+      hideErrors();
+
       const name     = document.getElementById('name').value.trim();
       const phone    = document.getElementById('phone').value.trim();
-      const service  = document.getElementById('service').value;
-      const date     = document.getElementById('date').value;
+      const service  = serviceSelect.value;
+      const date     = dateInput.value;
       const dateTo   = dateToInput.value;
       const timeFrom = timeFromSelect.value;
       const timeTo   = timeToSelect.value;
       const isWedding = service === 'Wedding Package (3 Days)';
 
-      if (!name || !phone || !service || !date || !timeFrom || !timeTo) {
-        alert('Please fill in all fields.');
-        return;
-      }
-      if (isWedding && !dateTo) {
-        alert('Please select your Walima (end) date for the wedding package.');
-        return;
-      }
-      if (isWedding && dateTo < date) {
-        alert('End date must be after the start date.');
-        return;
-      }
+      if (!validateForm()) return;
 
       const ok = await checkClash();
       if (!ok) return;
 
-      // Reserve the slot (this device/browser only)
-      saveBookedSlot(date, timeFrom, timeTo);
+      // Reserve the slot server-side (shared across all visitors)
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Reserving…';
+      try {
+        const res = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, phone, service, date,
+            dateTo: isWedding ? dateTo : undefined,
+            timeFrom, timeTo
+          })
+        });
+        if (res.status === 409) {
+          const data = await res.json();
+          showSlotWarning(`⚠️ ${data.error || 'That time is already booked. Please select any other time.'}`);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+          return;
+        }
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          apiError.textContent = `⚠️ ${data.error || 'Something went wrong. Please try again or message us on WhatsApp.'}`;
+          apiError.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+          return;
+        }
+      } catch (err) {
+        console.error('Reservation failed', err);
+        apiError.textContent = '⚠️ Network problem — please try again, or book via WhatsApp.';
+        apiError.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm Booking';
+        return;
+      }
 
-      // Submit to Netlify Forms
+      // Also record the lead in Netlify Forms for the salon owner
       const formData = new FormData(this);
       try {
         await fetch('/', {
