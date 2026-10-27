@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NAINA Owner Dashboard</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <style>
     body{font-family:Inter,system-ui,sans-serif;background:#fdf8f5;color:#2e2626;margin:0;padding:24px}
     main{max-width:1180px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:16px}
@@ -14,52 +13,128 @@
     button{border:0;border-radius:8px;padding:9px 12px;background:#a55570;color:white;cursor:pointer}
     select{padding:7px;border:1px solid #ddd;border-radius:6px}.muted{color:#7a6b6b}
     @media(max-width:700px){body{padding:12px}.cards{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}table{display:block;overflow:auto;white-space:nowrap}}
+    .loginbox{display:none;gap:8px}
+    .loginbox.open{display:flex}
+    .loginbox input{padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:.9rem;min-width:150px}
+    .userform{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .userform input{padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:.9rem}
+    .userform small{width:100%;color:#7a6b6b}
+    td .remove{background:#e8d9d9;color:#8a4a55;padding:6px 10px;font-size:.8rem}
+    .roletag{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;background:#f3e6ea;color:#a55570;border-radius:50px;padding:3px 10px;margin-left:8px;vertical-align:middle}
+    .back{display:inline-block;font-size:.85rem;color:#a55570;text-decoration:none;margin-bottom:6px}
+    .back:hover{text-decoration:underline}
+    .wa-btn{display:inline-block;background:#25D366;color:#fff;text-decoration:none;padding:7px 11px;border-radius:8px;font-size:.8rem}
+    .wa-btn:hover{background:#1ebe5b}
   </style>
 </head>
 <body>
 <main>
-  <div class="top"><div><p class="muted">NAINA Beauty Salon</p><h1>Owner Dashboard</h1></div><div><button id="login">Login</button> <button id="logout" hidden>Logout</button></div></div>
-  <p id="message" class="muted">Log in with your Netlify Identity owner account.</p>
+  <div class="top"><div><a class="back" href="/">&#8592; Back to site</a><p class="muted">NAINA Beauty Salon</p><h1>Owner Dashboard</h1></div>
+    <form id="loginForm" class="loginbox"><input id="username" placeholder="Username" autocomplete="username" required><input id="password" type="password" placeholder="Password" autocomplete="current-password" required><button type="submit">Login</button></form>
+    <button id="logout" hidden>Logout</button>
+  </div>
+  <p id="message" class="muted">Sign in with your admin username and password.</p>
   <div id="dashboard" hidden>
     <div class="cards"><div class="card">Revenue<div id="revenue" class="value">PKR 0</div></div><div class="card">Paid<div id="paid" class="value">PKR 0</div></div><div class="card">Pending bookings<div id="pending" class="value">0</div></div></div>
-    <section><h2>Bookings</h2><table><thead><tr><th>Date</th><th>Customer</th><th>Service</th><th>Time</th><th>Amount</th><th>Staff</th><th>Status</th></tr></thead><tbody id="bookings"></tbody></table></section>
+    <section><h2>Bookings</h2><table><thead><tr><th>Date</th><th>Customer</th><th>Service</th><th>Time</th><th>Amount</th><th>Staff</th><th>Status</th><th>WhatsApp</th></tr></thead><tbody id="bookings"></tbody></table></section>
     <section><h2>Customers</h2><table><thead><tr><th>Name</th><th>Phone</th><th>Joined</th></tr></thead><tbody id="customers"></tbody></table></section>
     <section><h2>Services</h2><table><thead><tr><th>Name</th><th>Duration</th><th>Price (PKR)</th><th>Active</th></tr></thead><tbody id="services"></tbody></table></section>
+    <section id="usersSection" hidden><h2>Users<span class="roletag">only naina-admin</span></h2>
+      <p class="muted">People you add here can log in and manage the salon, but they cannot add or remove users.</p>
+      <form id="userForm" class="userform"><input id="newUsername" placeholder="Username (e.g. sana-admin)" required><input id="newPassword" type="password" placeholder="Password (min 8 characters)" required><button type="submit">Add user</button><small>Give the username and password to that person. They sign in on this same page.</small></form>
+      <table><thead><tr><th>Username</th><th>Added</th><th></th></tr></thead><tbody id="users"></tbody></table>
+    </section>
   </div>
 </main>
 <script>
   const fmt = n => `PKR ${Number(n || 0).toLocaleString('en-PK')}`;
-  const identity = window.netlifyIdentity;
+  const TOKEN_KEY = 'nainaAdminToken';
   const message = document.getElementById('message');
+  const loginForm = document.getElementById('loginForm');
+  const getToken = () => localStorage.getItem(TOKEN_KEY);
+  const setSignedIn = (name) => {
+    loginForm.classList.remove('open');
+    document.getElementById('logout').hidden = false;
+    message.textContent = `Signed in as ${name}`;
+  };
+  async function adminFetch(method, body) {
+    const response = await fetch('/api/admin', {method, headers:{'Content-Type':'application/json',Authorization:`Bearer ${getToken()}`},body:body?JSON.stringify(body):undefined});
+    const data = await response.json().catch(() => ({}));
+    return { ok: response.ok, data, error: data.error || (response.ok ? '' : 'Request failed') };
+  }
+  function renderUsers(users) {
+    document.getElementById('users').innerHTML = users.map(u => `<tr><td>${u.username}</td><td>${String(u.createdAt || '').slice(0,10)}</td><td><button class="remove" data-user="${u.username}">Remove</button></td></tr>`).join('') || '<tr><td colspan="3" class="muted">No extra users yet.</td></tr>';
+    document.querySelectorAll('#users .remove').forEach(btn => btn.addEventListener('click', async () => {
+      if (!confirm(`Remove user "${btn.dataset.user}"? They will no longer be able to log in.`)) return;
+      const res = await adminFetch('DELETE', {resource:'user', username:btn.dataset.user});
+      message.textContent = res.ok ? `User ${btn.dataset.user} removed.` : res.error;
+      if (res.ok) load();
+    }));
+  }
   async function load() {
-    const user = identity.currentUser();
-    if (!user) return;
-    const token = await user.jwt();
+    const token = getToken();
+    if (!token) { loginForm.classList.add('open'); return; }
     const response = await fetch('/api/admin', {headers:{Authorization:`Bearer ${token}`}});
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || 'Could not load dashboard');
     document.getElementById('dashboard').hidden = false;
-    document.getElementById('login').hidden = true; document.getElementById('logout').hidden = false;
+    setSignedIn(data.admin ? `${data.admin.username}${data.admin.role === 'root' ? ' (owner)' : ''}` : 'admin');
+    const isRoot = data.admin && data.admin.role === 'root';
+    const usersSection = document.getElementById('usersSection');
+    usersSection.hidden = !isRoot;
+    if (isRoot && data.users) renderUsers(data.users);
     document.getElementById('revenue').textContent = fmt(data.summary.revenue);
     document.getElementById('paid').textContent = fmt(data.summary.paid);
     document.getElementById('pending').textContent = data.summary.pendingBookings;
-    document.getElementById('bookings').innerHTML = data.bookings.map(b => `<tr><td>${b.date}</td><td>${b.name}<br><span class="muted">${b.phone}</span></td><td>${b.service}</td><td>${b.timeFrom}–${b.timeTo}</td><td>${fmt(b.amount)}</td><td><select data-id="${b.id}" class="staff"><option value="">Unassigned</option>${data.staff.map(s => `<option value="${s.id}" ${s.id===b.staffId?'selected':''}>${s.name}</option>`).join('')}</select></td><td><select data-id="${b.id}" class="status"><option ${b.status==='pending'?'selected':''}>pending</option><option ${b.status==='confirmed'?'selected':''}>confirmed</option><option ${b.status==='completed'?'selected':''}>completed</option><option ${b.status==='cancelled'?'selected':''}>cancelled</option><option ${b.status==='no_show'?'selected':''}>no_show</option></select></td></tr>`).join('');
+    const waLink = b => {
+      const phone = String(b.phone || '').replace(/\D/g, '');
+      const target = phone.startsWith('03') ? '92' + phone.slice(1) : phone;
+      const text = encodeURIComponent(`Assalam-o-Alaikum ${b.name}! This is NAINA Beauty Salon. Your ${b.service} appointment is booked for ${b.date} from ${b.timeFrom} to ${b.timeTo}. Please reply to confirm. Thank you!`);
+      return `https://wa.me/${target}?text=${text}`;
+    };
+    document.getElementById('bookings').innerHTML = data.bookings.map(b => `<tr><td>${b.date}</td><td>${b.name}<br><span class="muted">${b.phone}</span></td><td>${b.service}</td><td>${b.timeFrom}–${b.timeTo}</td><td>${fmt(b.amount)}</td><td><select data-id="${b.id}" class="staff"><option value="">Unassigned</option>${data.staff.map(s => `<option value="${s.id}" ${s.id===b.staffId?'selected':''}>${s.name}</option>`).join('')}</select></td><td><select data-id="${b.id}" class="status"><option ${b.status==='pending'?'selected':''}>pending</option><option ${b.status==='confirmed'?'selected':''}>confirmed</option><option ${b.status==='completed'?'selected':''}>completed</option><option ${b.status==='cancelled'?'selected':''}>cancelled</option><option ${b.status==='no_show'?'selected':''}>no_show</option></select></td><td><a class="wa-btn" target="_blank" rel="noopener" href="${waLink(b)}">Message</a></td></tr>`).join('');
     document.getElementById('customers').innerHTML = data.customers.map(c => `<tr><td>${c.name}</td><td>${c.phone}</td><td>${String(c.createdAt || '').slice(0,10)}</td></tr>`).join('');
     document.getElementById('services').innerHTML = data.services.map(s => `<tr><td>${s.name}</td><td>${s.durationMins} min</td><td>${fmt(s.price)}</td><td>${s.active?'Yes':'No'}</td></tr>`).join('');
     document.querySelectorAll('.status').forEach(select => select.addEventListener('change', async e => {
-      const token = await identity.currentUser().jwt();
-      await fetch('/api/admin', {method:'PATCH',headers:{'Content-Type':'application/json',Authorization:`Bearer ${token}`},body:JSON.stringify({resource:'booking',id:Number(e.target.dataset.id),status:e.target.value})});
+      await fetch('/api/admin', {method:'PATCH',headers:{'Content-Type':'application/json',Authorization:`Bearer ${getToken()}`},body:JSON.stringify({resource:'booking',id:Number(e.target.dataset.id),status:e.target.value})});
     }));
     document.querySelectorAll('.staff').forEach(select => select.addEventListener('change', async e => {
-      const token = await identity.currentUser().jwt();
-      await fetch('/api/admin', {method:'PATCH',headers:{'Content-Type':'application/json',Authorization:`Bearer ${token}`},body:JSON.stringify({resource:'booking',id:Number(e.target.dataset.id),staffId:e.target.value ? Number(e.target.value) : null})});
+      await fetch('/api/admin', {method:'PATCH',headers:{'Content-Type':'application/json',Authorization:`Bearer ${getToken()}`},body:JSON.stringify({resource:'booking',id:Number(e.target.dataset.id),staffId:e.target.value ? Number(e.target.value) : null})});
     }));
-    message.textContent = `Signed in as ${user.email}`;
   }
-  document.getElementById('login').onclick = () => identity.open('login');
-  document.getElementById('logout').onclick = () => identity.logout();
-  identity.on('login', load); identity.on('logout', () => location.reload());
-  load().catch(error => message.textContent = error.message);
+  loginForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    message.textContent = 'Signing in…';
+    try {
+      const response = await fetch('/api/admin/login', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:document.getElementById('username').value,password:document.getElementById('password').value})});
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Login failed');
+      localStorage.setItem(TOKEN_KEY, data.token);
+      message.textContent = 'Loading dashboard…';
+      await load();
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  });
+  document.getElementById('userForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    message.textContent = 'Adding user…';
+    const res = await adminFetch('POST', {resource:'user', username:document.getElementById('newUsername').value, password:document.getElementById('newPassword').value});
+    if (res.ok) {
+      message.textContent = `User ${res.data.user.username} added. Share the username and password with them.`;
+      document.getElementById('newUsername').value = '';
+      document.getElementById('newPassword').value = '';
+      load();
+    } else {
+      message.textContent = res.error;
+    }
+  });
+  document.getElementById('logout').onclick = () => { localStorage.removeItem(TOKEN_KEY); location.reload(); };
+  load().catch(error => {
+    loginForm.classList.add('open');
+    message.textContent = error.message;
+    if (/session|access|auth/i.test(error.message)) localStorage.removeItem(TOKEN_KEY);
+  });
 </script>
 </body>
 </html>
